@@ -7,7 +7,7 @@
 echo "4 core"
 start=`date +%s.%N`
 
-mpirun -np 10 greeting.o -p batch -N 4 -nodelist=node-01,node-03,node-05
+mpirun greeting.o -p batch -N 4 -nodelist=node-01,node-03,node-05
 
 end=`date +%s.%N`
 runtime=$( echo "$end - $start" | bc -l )
