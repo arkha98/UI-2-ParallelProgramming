@@ -1,8 +1,8 @@
 #!/bin/sh
 #SBATCH -o greeting.out
 #SBATCH -p batch
-
-#SBATCH -nodelist=node-01,node-03,node-05
+#SBATCH -N 3
+#SBATCH --nodelist=node-01,node-03,node-05
 
 echo "24 core"
 start=`date +%s.%N`
