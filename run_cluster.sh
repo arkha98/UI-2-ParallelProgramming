@@ -7,7 +7,7 @@
 echo "24 core"
 start=`date +%s.%N`
 
-mpirun --use-hwthread-cpus 24 /home/user20/UI-2-ParallelProgramming/greeting.o
+mpirun -np 24 /home/user20/UI-2-ParallelProgramming/greeting.o
 
 end=`date +%s.%N`
 runtime=$( echo "$end - $start" | bc -l )
