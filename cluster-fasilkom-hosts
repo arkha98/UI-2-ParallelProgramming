@@ -1,0 +1,9 @@
+store-01 slots=2 max_slots=25
+node-01 slots=2 max_slots=25
+node-02 slots=2 max_slots=25
+node-03 slots=2 max_slots=25
+node-04 slots=2 max_slots=25
+node-05 slots=2 max_slots=25
+node-06 slots=2 max_slots=25
+node-07 slots=2 max_slots=25
+node-08 slots=2 max_slots=25

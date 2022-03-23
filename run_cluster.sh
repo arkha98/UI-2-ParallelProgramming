@@ -1,5 +1,6 @@
 #!/bin/sh
 #SBATCH -o greeting.out
+#SBATCH --hostfile cluster-fasilkom-hosts
 #SBATCH -p batch
 #SBATCH -N 3
 #SBATCH --nodelist=node-01,node-03,node-05
