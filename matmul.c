@@ -8,7 +8,7 @@
 #include <mpi.h>
 #include <stdio.h>
 
-#define SIZE 1024			/* Size of matrices */
+#define SIZE 2048			/* Size of matrices */
 
 int A[SIZE][SIZE], B[SIZE][SIZE], C[SIZE][SIZE];
 
