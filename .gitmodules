@@ -1,0 +1,3 @@
+[submodule "Conjugate_Gradient_with_MPI_and_OpenMP"]
+	path = Conjugate_Gradient_with_MPI_and_OpenMP
+	url = https://github.com/tgolubev/Conjugate_Gradient_with_MPI_and_OpenMP.git
