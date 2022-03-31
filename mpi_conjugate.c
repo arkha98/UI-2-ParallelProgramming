@@ -14,34 +14,109 @@ int A[SIZE][SIZE], B[SIZE][SIZE], C[SIZE][SIZE];
 
 void fill_matrix(int m[SIZE][SIZE])
 {
-  static int n=0;
-  int i, j;
-  for (i=0; i<SIZE; i++)
-    for (j=0; j<SIZE; j++)
-      m[i][j] = n++;
+    static int n=0;
+    int i, j;
+    for (i=0; i<SIZE; i++)
+        for (j=0; j<SIZE; j++)
+            m[i][j] = n++;
 }
 
 void print_matrix(int m[SIZE][SIZE])
 {
-  int i, j = 0;
-  for (i=0; i<SIZE; i++) {
-    printf("\n\t| ");
-    for (j=0; j<SIZE; j++)
-      printf("%2d ", m[i][j]);
-    printf("|");
-  }
+    int i, j = 0;
+    for (i=0; i<SIZE; i++) {
+        printf("\n\t| ");
+            for (j=0; j<SIZE; j++)
+            printf("%2d ", m[i][j]);
+        printf("|");
+    }
 }
 
 
 int main(int argc, char *argv[])
 {
-    int myrank, P, i, j, k;
+    int myrank, P, from, to, i, j, k;
+    int tag = 666;		/* any value will do */
     MPI_Status status;
-    MPI_Init(&argc, &argv);
-    MPI_Comm_rank(MPI_COMM_WORLD, &myrank);
-    return 0;
-}
+    
+    MPI_Init (&argc, &argv);
+    MPI_Comm_rank(MPI_COMM_WORLD, &myrank);	/* who am i */
+    MPI_Comm_size(MPI_COMM_WORLD, &P); /* number of processors */
 
-int matmul(int A, int B, int C, int myrank, int P, int i, int j, int k)
-{
+    /* Just to use the simple variants of MPI_Gather and MPI_Scatter we */
+    /* impose that SIZE is divisible by P. By using the vector versions, */
+    /* (MPI_Gatherv and MPI_Scatterv) it is easy to drop this restriction. */
+
+    //   if (SIZE%P!=0) {
+    //     if (myrank==0) printf("Matrix size not divisible by number of processors\n");
+    //     MPI_Finalize();
+    //     exit(-1);
+    //   }
+
+    from = myrank * SIZE/P;
+    to = (myrank+1) * SIZE/P;
+
+    /* Process 0 fills the input matrices and broadcasts them to the rest */
+    /* (actually, only the relevant stripe of A is sent to each process) */
+
+    if (myrank==0) {
+        fill_matrix(A);
+        fill_matrix(B);
+    }
+
+    MPI_Bcast (B, SIZE*SIZE, MPI_INT, 0, MPI_COMM_WORLD);
+    MPI_Scatter (A, SIZE*SIZE/P, MPI_INT, A[from], SIZE*SIZE/P, MPI_INT, 0, MPI_COMM_WORLD);
+
+    printf("computing slice %d (from row %d to %d)\n", myrank, from, to-1);
+    for (i=from; i<to; i++) 
+        for (j=0; j<SIZE; j++) {
+            C[i][j]=0;
+            for (k=0; k<SIZE; k++)
+                C[i][j] += A[i][k]*B[k][j];
+        }
+
+    MPI_Gather (C[from], SIZE*SIZE/P, MPI_INT, C, SIZE*SIZE/P, MPI_INT, 0, MPI_COMM_WORLD);
+
+    if (myrank==0) {
+        printf("\n\n");
+        print_matrix(A);
+        printf("\n\n\t       * \n");
+        print_matrix(B);
+        printf("\n\n\t       = \n");
+        print_matrix(C);
+        printf("\n\n");
+    }
+
+    MPI_Finalize();
+    MPI_Comm_rank(MPI_COMM_WORLD, &myrank);	/* who am i */
+    MPI_Comm_size(MPI_COMM_WORLD, &P); /* number of processors */
+
+    from = myrank * SIZE/P;
+    to = (myrank+1) * SIZE/P;
+    if (myrank==0) {
+    }
+
+    MPI_Init (&argc, &argv);
+    /* Choose initial vector x0 */
+    /* Set p_0=r_0=A*x_0 - b */
+    /* Compute y_0 = transpose(r_0)*r_0 */
+    /* For k = 0,1,2,... */
+    /* 1 */
+    /* z_k = A*p_k */
+    /* 2 */
+    /* alpha_k = -y_k/( transpose(p_k)*z_k ) */
+    /* 3 */
+    /* x_k+1 = x_k + alpha_k*p_k */
+    /* 4 */
+    /* r_k+1 = r_k + alpha_k*z_k */
+    /* 5 */
+    /* y_k+1 = transpose(r_k+1)*r_k+1 */
+    /* 6 */
+    /* if y_k+1 < tol then stop */
+    /* 7 */
+    /* beta_k = y_k+1/y_k */
+    /* 8 */
+    /* p_k+1 = r_k+1 + beta_k*p_k */
+    /* end loop k */
+    return 0;
 }
