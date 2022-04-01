@@ -1,4 +1,4 @@
 HPCG benchmark input file
 Sandia National Laboratories; University of Tennessee, Knoxville
-1024 1024 1024
-3600
+256 256 256
+7200
