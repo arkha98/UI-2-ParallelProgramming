@@ -1,4 +1,3 @@
 #!/bin/bash
-#SBATCH -o greeting.out
 mpicc greeting.c -o greeting.o
-time mpirun --hostfile yoga-thinkpad-hosts -np 4 greeting.o --mca opal_warn_on_missing_libcuda 0
+{ time mpirun --hostfile yoga-thinkpad-hosts -np 4 greeting.o --mca opal_warn_on_missing_libcuda 0 > greeting.out ; } 2> greeting.time
