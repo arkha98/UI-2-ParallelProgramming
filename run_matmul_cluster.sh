@@ -8,4 +8,4 @@ mpicc matmul_2048.c -o matmul_2048.o
 mpicc matmul_4096.c -o matmul_4096.o
 mpicc matmul_8192.c -o matmul_8192.o
 
-sbatch run_matmul_cluster_helper.sh
+sbatch /home/user20/UI-2-ParallelProgramming/run_matmul_cluster_helper.sh
