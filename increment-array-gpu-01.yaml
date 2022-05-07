@@ -4,7 +4,7 @@
 kind: Pod
 apiVersion: v1
 metadata:
-  name: user20-hpc-benchmarks
+  name: user20-increment-array
 spec:
   # Add the server as an NFS volume for the pod
   volumes:
