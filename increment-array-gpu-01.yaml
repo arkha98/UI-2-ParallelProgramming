@@ -18,7 +18,7 @@ spec:
   # and write the date to a file inside it.
   containers:
     - name: app
-      image: nvcr.io/nvidia/nvhpc:21.9-devel-cuda_multi-ubuntu20.04
+      image: "nvcr.io/nvidia/nvhpc:21.9-devel-cuda_multi-ubuntu20.04"
 
       # Mount the NFS volume in the container
       volumeMounts:
