@@ -13,6 +13,6 @@ spec:
       image: "nvcr.io/nvidia/nvhpc:22.3-devel-cuda_multi-ubuntu20.04"  # Change this (Look up at NGC NVIDIA)
       command: ["/bin/sh"]
       args: ["-c", "while true; do sleep 10; done"]
-      volumeMounts:
-        - mountPath: "/workspace"
-          name: paralel2022-pv-storage
+      # volumeMounts:
+      #   - mountPath: "/workspace"
+      #     name: paralel2022-pv-storage
