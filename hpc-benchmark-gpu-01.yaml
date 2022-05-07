@@ -4,7 +4,7 @@
 kind: Pod
 apiVersion: v1
 metadata:
-  name: user20-gpu-03-cuda
+  name: user20-hpc-benchmarks
 spec:
   # Add the server as an NFS volume for the pod
   volumes:
