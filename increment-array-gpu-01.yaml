@@ -29,6 +29,6 @@ spec:
       command: ["/bin/sh"]
       args: ["-c", "while true; do date >> /workspace/date2113.txt; sleep 5; done"]
   nodeSelector:
-      gputype: gpu-02
+      gputype: gpu-03
   imagePullSecrets:
       - name: nvcr.dgxkey
