@@ -18,7 +18,7 @@ spec:
   # and write the date to a file inside it.
   containers:
     - name: app
-      image: "nvcr.io/nvidia/hpc-benchmarks:21.4-hpcg"
+      image: "nvcr.io/nvidia/hpc-benchmarks:21.4-hpl"
 
       # Mount the NFS volume in the container
       volumeMounts:
