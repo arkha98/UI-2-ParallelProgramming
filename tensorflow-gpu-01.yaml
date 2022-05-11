@@ -4,7 +4,7 @@
 kind: Pod
 apiVersion: v1
 metadata:
-  name: user20-increment-array
+  name: user20-tensorflow
 spec:
   # Add the server as an NFS volume for the pod
   volumes:
@@ -18,7 +18,7 @@ spec:
   # and write the date to a file inside it.
   containers:
     - name: app
-      image: "nvcr.io/nvidia/nvhpc:21.9-devel-cuda_multi-ubuntu20.04"
+      image: "nvcr.io/nvidia/tensorflow:22.04-tf2-py3"
 
       # Mount the NFS volume in the container
       volumeMounts:

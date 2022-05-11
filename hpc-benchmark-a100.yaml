@@ -13,6 +13,6 @@ spec:
       image: "nvcr.io/nvidia/hpc-benchmarks:21.4-hpcg"  # Change this (Look up at NGC NVIDIA)
       command: ["/bin/sh"]
       args: ["-c", "while true; do sleep 10; done"]
-      # volumeMounts:
-      #   - mountPath: "/workspace"
-      #     name: paralel2022-pv-storage
+      volumeMounts:
+        - mountPath: "/workspace"
+          name: paralel2022-pv-storage
