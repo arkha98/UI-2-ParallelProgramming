@@ -23,7 +23,7 @@ spec:
       # Mount the NFS volume in the container
       volumeMounts:
         - name: nfs-volume
-          mountPath: /workspace
+          mountPath: /myworkspace
 
       # Write to a file inside our NFS
       command: ["/bin/sh"]
