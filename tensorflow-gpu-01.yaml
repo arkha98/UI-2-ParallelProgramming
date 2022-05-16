@@ -4,7 +4,7 @@
 kind: Pod
 apiVersion: v1
 metadata:
-  name: user20-tensorflow-tmp
+  name: user20-tensorflow
 spec:
   # Add the server as an NFS volume for the pod
   volumes:
