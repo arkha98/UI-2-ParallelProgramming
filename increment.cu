@@ -48,9 +48,7 @@ int main(void)
     printf("HOSTS\tDEVICE\n");
     for (i=0; i<N; i++)
     {
-        // printf("%d\t%d\n", a_h[i], b_h[i]);
-        printf("%.0f\t", a_h[i]);
-        printf("%.0f\n", b_h[i]);
+        printf("%.0f\t%.0f\n", a_h[i], b_h[i]);
         assert(a_h[i] == b_h[i]);
     }
     printf("passing assert so its valid!!!\n");
