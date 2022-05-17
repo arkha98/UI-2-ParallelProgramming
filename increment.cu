@@ -52,7 +52,7 @@ int main(void)
         printf("hosts\t");
         printf("%f\n", a_h[i]);
         printf("device\t");
-        printf("%f\n", b_h[i])
+        printf("%f\n", b_h[i]);
         assert(a_h[i] == b_h[i]);
     }
     printf("passing assert so its valid!!!\n");
