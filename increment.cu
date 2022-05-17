@@ -45,10 +45,10 @@ int main(void)
     // Retrieve result from device and store in b_h
     cudaMemcpy(b_h, a_d, sizeof(float)*N, cudaMemcpyDeviceToHost);
     // check results
-    printf("HOSTS\tDEVICE");
+    printf("HOSTS\tDEVICE\n");
     for (i=0; i<N; i++)
     {
-        printf("%d\t%d", a_h[i], b_h[i]);
+        printf("%d\t%d\n", a_h[i], b_h[i]);
         assert(a_h[i] == b_h[i]);
     }
     printf("passing assert so its valid!!!\n");
