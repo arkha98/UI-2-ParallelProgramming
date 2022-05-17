@@ -27,7 +27,7 @@ spec:
 
       # Write to a file inside our NFS
       command: ["/bin/sh"]
-      args: ["-c", "while true; do date > /myworkspace/date2113.txt; sleep 5; done"]
+      args: ["-c", "while true; do date >> /myworkspace/date2113.txt; sleep 5; done"]
   nodeSelector:
       gputype: gpu-02
   imagePullSecrets:
