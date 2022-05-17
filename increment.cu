@@ -18,7 +18,7 @@ int main(void)
 {
     float *a_h, *b_h; // pointers to host memory
     float *a_d; // pointer to device memory
-    int i, N = 1000;
+    int i, N = 10;
     size_t size = N*sizeof(float);
     // allocate arrays on host
     a_h = (float *)malloc(size);
