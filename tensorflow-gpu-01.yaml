@@ -12,22 +12,23 @@ spec:
       nfs:
         # URL for the NFS server
         server: 152.118.31.24 # Change this!
-        path: /mnt/sharedfolder/user20
+        # path: /mnt/sharedfolder/user20
+        path: /home/user20
 
   # In this container, we'll mount the NFS volume
   # and write the date to a file inside it.
   containers:
     - name: app
-      image: "nvcr.io/nvidia/tensorflow:22.04-tf2-py3"
+      image: nvcr.io/nvidia/tensorflow:22.04-tf2-py3
 
       # Mount the NFS volume in the container
       volumeMounts:
         - name: nfs-volume
-          mountPath: /workspace
+          mountPath: /myworkspace
 
       # Write to a file inside our NFS
       command: ["/bin/sh"]
-      args: ["-c", "while true; do date >> /workspace/date2113.txt; sleep 5; done"]
+      args: ["-c", "while true; do date > /myworkspace/date2113.txt; sleep 5; done"]
   nodeSelector:
       gputype: gpu-02
   imagePullSecrets:
