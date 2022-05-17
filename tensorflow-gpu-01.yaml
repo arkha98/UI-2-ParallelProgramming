@@ -23,11 +23,11 @@ spec:
       # Mount the NFS volume in the container
       volumeMounts:
         - name: nfs-volume
-          mountPath: /myworkspace
+          mountPath: /workspace
 
       # Write to a file inside our NFS
       command: ["/bin/sh"]
-      args: ["-c", "while true; do date >> /myworkspace/date2113.txt; sleep 5; done"]
+      args: ["-c", "while true; do date > /workspace/date2113.txt; sleep 5; done"]
   nodeSelector:
       gputype: gpu-02
   imagePullSecrets:
