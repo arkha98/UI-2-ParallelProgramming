@@ -12,8 +12,8 @@ spec:
       nfs:
         # URL for the NFS server
         server: 152.118.31.24 # Change this!
-        # path: /mnt/sharedfolder/user20
-        path: /home/user20
+        path: /mnt/sharedfolder/user20
+        # path: /home/user20
 
   # In this container, we'll mount the NFS volume
   # and write the date to a file inside it.
