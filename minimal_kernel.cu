@@ -18,21 +18,21 @@ __global__ void kernel_a (float *a)
 {
     int idx = blockIdx.x*blockDim.x + threadIdx.x;
     a[idx] = 7;
-    printf("hai\n")
+    printf("hai\n");
 }
 
 __global__ void kernel_b (float *a)
 {
     int idx = blockIdx.x*blockDim.x + threadIdx.x;
     a[idx] = blockIdx.x;
-    printf("hai\n")
+    printf("hai\n");
 }
 
 __global__ void kernel_c (float *a)
 {
     int idx = blockIdx.x*blockDim.x + threadIdx.x;
     a[idx] = threadIdx.x;
-    printf("hai\n")
+    printf("hai\n");
 }
 
 int main(void)
