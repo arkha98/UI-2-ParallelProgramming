@@ -41,9 +41,9 @@ int main(void)
     // allocate arrays on host
     a_h = (float *)malloc(size);
     b_h = (float *)malloc(size);
-    k_a = (float *)malloc(size);
-    k_b = (float *)malloc(size);
-    k_c = (float *)malloc(size);
+    k_a = (int *)malloc(size);
+    k_b = (int *)malloc(size);
+    k_c = (int *)malloc(size);
     // allocate array on device
     cudaMalloc((void **) &a_d, size);
     // initialization of host data
@@ -55,9 +55,9 @@ int main(void)
     printf("increment array on host\n");
     incrementArrayOnHost(a_h, N);
     printf("calculate modified kernel");
-    kernel_a(k_a, N);
-    kernel_a(k_b, N);
-    kernel_a(k_c, N);
+    kernel_a(k_a);
+    kernel_a(k_b);
+    kernel_a(k_c);
     // do calculation on device:
     printf("DEVICE\n");
     // Part 1 of 2. Compute execution configuration
