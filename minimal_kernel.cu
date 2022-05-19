@@ -71,7 +71,7 @@ int main(void)
     // Part 2 of 2. Call incrementArrayOnDevice kernel
     printf("increment array on device\n");
     incrementArrayOnDevice <<< nBlocks, blockSize >>> (a_d, N);
-    printf("calculate modified kernel");
+    printf("calculate modified kernel\n");
     kernel_a <<< nBlocks, blockSize >>> (k_a_d);
     kernel_b <<< nBlocks, blockSize >>> (k_b_d);
     kernel_c <<< nBlocks, blockSize >>> (k_c_d);
