@@ -48,6 +48,9 @@ int main(void)
     k_c_h = (float *)malloc(size);
     // allocate array on device
     cudaMalloc((void **) &a_d, size);
+    cudaMalloc((void **) &k_a_d, size);
+    cudaMalloc((void **) &k_b_d, size);
+    cudaMalloc((void **) &k_c_d, size);
     // initialization of host data
     for (i=0; i<N; i++) a_h[i] = (float)i;
     // copy data from host to device
