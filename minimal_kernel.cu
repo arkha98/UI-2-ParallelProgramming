@@ -72,9 +72,9 @@ int main(void)
     printf("increment array on device\n");
     incrementArrayOnDevice <<< nBlocks, blockSize >>> (a_d, N);
     printf("calculate modified kernel");
-    kernel_a <<< nBlocks >>> (k_a_d);
-    kernel_b <<< nBlocks >>> (k_b_d);
-    kernel_c <<< nBlocks >>> (k_c_d);
+    kernel_a(k_a_d);
+    kernel_b(k_b_d);
+    kernel_c(k_c_d);
     // Retrieve result from device and store in b_h
     cudaMemcpy(b_h, a_d, sizeof(float)*N, cudaMemcpyDeviceToHost);
     cudaMemcpy(k_a_h, k_a_d, sizeof(float)*N, cudaMemcpyDeviceToHost);
