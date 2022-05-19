@@ -34,7 +34,8 @@ __global__ void kernel_c (int *a)
 
 int main(void)
 {
-    float *a_h, *b_h, *k_a, *k_b, *k_c; // pointers to host memory
+    float *a_h, *b_h; // pointers to host memory
+    int *k_a, *k_b, *k_c; // pointers to minimal kernel
     float *a_d; // pointer to device memory
     int i, N = 10;
     size_t size = N*sizeof(float);
