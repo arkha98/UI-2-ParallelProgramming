@@ -84,7 +84,7 @@ int main(void)
     printf("HOSTS\tDEVICE\tKERNEL_a\tKERNEL_b\tKERNEL_c\n");
     for (i=0; i<N; i++)
     {
-        printf("%.0f\t%.0f\t\t%.0f\t\t%.0f\t\t%.0f\n", a_h[i], b_h[i], k_a_h[i], k_b_h[i], k_c_h[i]);
+        printf("%.0f\t%.0f\t%.0f\t\t%.0f\t\t%.0f\n", a_h[i], b_h[i], k_a_h[i], k_b_h[i], k_c_h[i]);
         // assert(a_h[i] == b_h[i]);
     }
     // printf("passing assert so its valid!!!\n");
