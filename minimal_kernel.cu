@@ -23,13 +23,13 @@ __global__ void kernel_a (float *a)
 __global__ void kernel_b (float *a)
 {
     int idx = blockIdx.x*blockDim.x + threadIdx.x;
-    a[idx] = 7;
+    a[idx] = blockIdx.x;
 }
 
 __global__ void kernel_c (float *a)
 {
     int idx = blockIdx.x*blockDim.x + threadIdx.x;
-    a[idx] = 7;
+    a[idx] = threadIdx.x;
 }
 
 int main(void)
