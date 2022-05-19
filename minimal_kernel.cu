@@ -14,19 +14,19 @@ __global__ void incrementArrayOnDevice(float *a, int N)
     if (idx<N) a[idx] = a[idx]+1.f;
 }
 
-__global__ void kernel_a (int *a)
+__global__ void kernel_a (float *a)
 {
     int idx = blockIdx.x*blockDim.x + threadIdx.x;
     a[idx] = 7;
 }
 
-__global__ void kernel_b (int *a)
+__global__ void kernel_b (float *a)
 {
     int idx = blockIdx.x*blockDim.x + threadIdx.x;
     a[idx] = 7;
 }
 
-__global__ void kernel_c (int *a)
+__global__ void kernel_c (float *a)
 {
     int idx = blockIdx.x*blockDim.x + threadIdx.x;
     a[idx] = 7;
@@ -35,30 +35,30 @@ __global__ void kernel_c (int *a)
 int main(void)
 {
     float *a_h, *b_h; // pointers to host memory
-    int *k_a, *k_b, *k_c; // pointers to minimal kernel
     float *a_d; // pointer to device memory
+    float *k_a_h, *k_b_h, *k_c_h; // pointers to minimal kernel on host
+    float *k_a_d, *k_b_d, *k_c_d; // pointers to minimal kernel on device
     int i, N = 10;
     size_t size = N*sizeof(float);
     // allocate arrays on host
     a_h = (float *)malloc(size);
     b_h = (float *)malloc(size);
-    k_a = (int *)malloc(size);
-    k_b = (int *)malloc(size);
-    k_c = (int *)malloc(size);
+    k_a_h = (float *)malloc(size);
+    k_b_h = (float *)malloc(size);
+    k_c_h = (float *)malloc(size);
     // allocate array on device
     cudaMalloc((void **) &a_d, size);
     // initialization of host data
     for (i=0; i<N; i++) a_h[i] = (float)i;
     // copy data from host to device
     cudaMemcpy(a_d, a_h, sizeof(float)*N, cudaMemcpyHostToDevice);
+    cudaMemcpy(k_a_d, a_h, sizeof(float)*N, cudaMemcpyHostToDevice);
+    cudaMemcpy(k_b_d, a_h, sizeof(float)*N, cudaMemcpyHostToDevice);
+    cudaMemcpy(k_c_d, a_h, sizeof(float)*N, cudaMemcpyHostToDevice);
     // do calculation on host
     printf("HOST\n");
     printf("increment array on host\n");
     incrementArrayOnHost(a_h, N);
-    printf("calculate modified kernel");
-    kernel_a(k_a);
-    kernel_a(k_b);
-    kernel_a(k_c);
     // do calculation on device:
     printf("DEVICE\n");
     // Part 1 of 2. Compute execution configuration
@@ -68,13 +68,20 @@ int main(void)
     // Part 2 of 2. Call incrementArrayOnDevice kernel
     printf("increment array on device\n");
     incrementArrayOnDevice <<< nBlocks, blockSize >>> (a_d, N);
+    printf("calculate modified kernel");
+    kernel_a <<< nBlocks >>> (k_a_d);
+    kernel_b <<< nBlocks >>> (k_b_d);
+    kernel_c <<< nBlocks >>> (k_c_d);
     // Retrieve result from device and store in b_h
     cudaMemcpy(b_h, a_d, sizeof(float)*N, cudaMemcpyDeviceToHost);
+    cudaMemcpy(k_a_h, k_a_d, sizeof(float)*N, cudaMemcpyDeviceToHost);
+    cudaMemcpy(k_b_h, k_b_d, sizeof(float)*N, cudaMemcpyDeviceToHost);
+    cudaMemcpy(k_c_h, k_c_d, sizeof(float)*N, cudaMemcpyDeviceToHost);
     // check results
     printf("HOSTS\tDEVICE\tKERNEL_a\tKERNEL_b\tKERNEL_c\n");
     for (i=0; i<N; i++)
     {
-        printf("%.0f\t%.0f\t%.0f\t%.0f\t%.0f\n", a_h[i], b_h[i], k_a[i], k_b[i], k_c[i]);
+        printf("%.0f\t%.0f\t%.0f\t%.0f\t%.0f\n", a_h[i], b_h[i], k_a_h[i], k_b_h[i], k_c_h[i]);
         // assert(a_h[i] == b_h[i]);
     }
     // printf("passing assert so its valid!!!\n");
