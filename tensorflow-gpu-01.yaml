@@ -11,6 +11,7 @@ spec:
     - name: nfs-volume
       nfs:
         # URL for the NFS server
+        # server: 152.118.31.24 # Change this!
         server: 152.118.31.58 # Change this!
         # path: /mnt/sharedfolder/user20
         path: /home/user20
