@@ -80,9 +80,13 @@ int main(void)
     kernel_c <<< nBlocks, blockSize >>> (k_c_d);
     // Retrieve result from device and store in b_h
     cudaMemcpy(b_h, a_d, sizeof(float)*N, cudaMemcpyDeviceToHost);
+
+    int blockSize = 5;
+    int nBlocks = N/blockSize + (N%blockSize == 0?0:1);
     cudaMemcpy(k_a_h, k_a_d, sizeof(float)*N, cudaMemcpyDeviceToHost);
     cudaMemcpy(k_b_h, k_b_d, sizeof(float)*N, cudaMemcpyDeviceToHost);
     cudaMemcpy(k_c_h, k_c_d, sizeof(float)*N, cudaMemcpyDeviceToHost);
+
     // check results
     printf("HOSTS\tDEVICE\tKERNEL_a\tKERNEL_b\tKERNEL_c\n");
     for (i=0; i<N; i++)
