@@ -41,7 +41,7 @@ int main(void)
     float *a_d; // pointer to device memory
     float *k_a_h, *k_b_h, *k_c_h; // pointers to minimal kernel on host
     float *k_a_d, *k_b_d, *k_c_d; // pointers to minimal kernel on device
-    int i, N = 10;
+    int i, N = 15;
     size_t size = N*sizeof(float);
     // allocate arrays on host
     a_h = (float *)malloc(size);
