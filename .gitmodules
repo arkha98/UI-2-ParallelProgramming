@@ -7,3 +7,6 @@
 [submodule "Cuda-Matrix-Multiplication"]
 	path = Cuda-Matrix-Multiplication
 	url = https://github.com/kberkay/Cuda-Matrix-Multiplication.git
+[submodule "matrix-cuda"]
+	path = matrix-cuda
+	url = https://github.com/lzhengchun/matrix-cuda.git
