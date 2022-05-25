@@ -4,3 +4,6 @@
 [submodule "hpcg"]
 	path = hpcg
 	url = https://github.com/hpcg-benchmark/hpcg
+[submodule "Cuda-Matrix-Multiplication"]
+	path = Cuda-Matrix-Multiplication
+	url = https://github.com/kberkay/Cuda-Matrix-Multiplication.git
