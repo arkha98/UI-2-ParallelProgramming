@@ -10,3 +10,6 @@
 [submodule "matrix-cuda"]
 	path = matrix-cuda
 	url = https://github.com/lzhengchun/matrix-cuda.git
+[submodule "cgls_cuda"]
+	path = cgls_cuda
+	url = https://github.com/foges/cgls_cuda.git
