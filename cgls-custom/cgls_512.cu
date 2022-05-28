@@ -155,6 +155,7 @@ void test() {
     printf("Test Failed: Flag = (%d, %d, %d, %d), Error = (%e, %e, %e)\n",
         flag1, flag2, flag3, flag4, err1, err2, err3);
   }
+  printf("Execution time (milliseconds) = %f\n", t);
 
   // Free data.
   cudaFree(b_d);
