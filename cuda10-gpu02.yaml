@@ -4,7 +4,7 @@
 kind: Pod
 apiVersion: v1
 metadata:
-  name: user20-cuda-devel
+  name: user20-cuda10-devel
 spec:
   # Add the server as an NFS volume for the pod
   volumes:
