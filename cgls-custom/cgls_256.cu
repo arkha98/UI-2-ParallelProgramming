@@ -67,6 +67,9 @@ void test() {
   for (int i = 0; i < m; ++i)
     b_h[i] = rand() / static_cast<real_t>(RAND_MAX);
 
+  // Execution time
+  clock_t t_start = clock();
+
   // Allocate x and b
   real_t *b_d, *x1_d, *x2_d, *x3_d, *x4_d;
   cudaMalloc(&x1_d, n * sizeof(real_t));
@@ -98,7 +101,7 @@ void test() {
   cudaMemcpy(val_a_d, val_h, nnz * sizeof(real_t), cudaMemcpyHostToDevice);
   cudaMemcpy(cind_a_d, cind_h, nnz * sizeof(int), cudaMemcpyHostToDevice);
   cudaMemcpy(rptr_a_d, rptr_h, (m + 1) * sizeof(int), cudaMemcpyHostToDevice);
-
+  
   // Make A^T copy.
   cusparseHandle_t handle_s;
   cusparseCreate(&handle_s);
@@ -107,9 +110,6 @@ void test() {
       CUSPARSE_INDEX_BASE_ZERO);
   cudaDeviceSynchronize();
   cusparseDestroy(handle_s);
-
-  // Execution time
-  clock_t t_start = clock();
 
   // Solve with only A.
   int flag1 = cgls::Solve<real_t, cgls::CSR>(val_a_d, rptr_a_d, cind_a_d,
@@ -124,15 +124,16 @@ void test() {
   int flag4 = cgls::Solve<real_t, cgls::CSC>(val_at_d, rptr_at_d, cind_at_d,
       val_a_d, rptr_a_d, cind_a_d, m, n, nnz, b_d, x4_d, shift, tol, maxit,
       quiet);
-  // Execution time
-  clock_t t_end = clock();
-  double t = (double)(t_end-t_start) / (CLOCKS_PER_SEC/1000);
-
+  
   // Retrieve solution.
   cudaMemcpy(x1_h, x1_d, n * sizeof(real_t), cudaMemcpyDeviceToHost);
   cudaMemcpy(x2_h, x2_d, n * sizeof(real_t), cudaMemcpyDeviceToHost);
   cudaMemcpy(x3_h, x3_d, n * sizeof(real_t), cudaMemcpyDeviceToHost);
   cudaMemcpy(x4_h, x4_d, n * sizeof(real_t), cudaMemcpyDeviceToHost);
+  
+  // Execution time
+  clock_t t_end = clock();
+  double t = (double)(t_end-t_start) / (CLOCKS_PER_SEC/1000);
 
   // Compute error and print.
   real_t err1 = 0, err2 = 0, err3 = 0;
