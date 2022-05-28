@@ -36,7 +36,7 @@ void CsrMatGen(int m, int n, int nnz, real_t *val, int *rptr, int *cind) {
 }
 
 // Test CGLS on larger random matrix.
-void test1() {
+void test() {
   // Reset random seed.
   srand(0);
 
@@ -139,10 +139,10 @@ void test1() {
 
   if (flag1 == 0 && flag2 == 0 && flag3 == 0 && flag4 == 0
       && err1 < tol && err2 < tol && err3 < tol) {
-    printf("Test4 Passed: Flag = (%d, %d, %d, %d), Error = (%e, %e, %e)\n",
+    printf("Test Passed: Flag = (%d, %d, %d, %d), Error = (%e, %e, %e)\n",
         flag1, flag2, flag3, flag4, err1, err2, err3);
   } else {
-    printf("Test4 Failed: Flag = (%d, %d, %d, %d), Error = (%e, %e, %e)\n",
+    printf("Test Failed: Flag = (%d, %d, %d, %d), Error = (%e, %e, %e)\n",
         flag1, flag2, flag3, flag4, err1, err2, err3);
   }
 
@@ -171,6 +171,15 @@ void test1() {
 
 // Run tests.
 int main() {
-  test1();
+  // Execution time
+  clock_t t;
+  t = clock();
+
+  // Run test
+  test();
+
+  // Execution time
+  t = clock() - t;
+  printf("Execution time = %f", t);
 }
 
