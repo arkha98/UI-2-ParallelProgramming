@@ -49,6 +49,9 @@ void test() {
   int n = 8096;
   int nnz = 10000;
 
+  printf("M = %d\n", m);
+  printf("N = %d\n", n);
+
   // Initialize data.
   real_t *val_h = new real_t[nnz];
   int *cind_h = new int[nnz];
@@ -180,6 +183,6 @@ int main() {
   // Execution time
   clock_t t_end = clock();
   double t = (double)(t_end-t_start) / CLOCKS_PER_SEC;
-  printf("Execution time = %f\n", t);
+  printf("Execution time (milliseconds) = %f\n", t);
 }
 
