@@ -346,7 +346,7 @@ void test4() {
       && err1 < tol && err2 < tol && err3 < tol) {
     printf("Test4 Passed: Flag = (%d, %d, %d, %d), Error = (%e, %e, %e)\n",
         flag1, flag2, flag3, flag4, err1, err2, err3);
-    printf("Computation time for Test4 = %.2f\n", t)
+    printf("Computation time for Test4 = %.2f\n", t);
   } else {
     printf("Test4 Failed: Flag = (%d, %d, %d, %d), Error = (%e, %e, %e)\n",
         flag1, flag2, flag3, flag4, err1, err2, err3);
