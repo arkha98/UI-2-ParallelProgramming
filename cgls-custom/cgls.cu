@@ -182,7 +182,7 @@ int main() {
 
   // Execution time
   clock_t t_end = clock();
-  double t = (double)(t_end-t_start) / CLOCKS_PER_SEC;
+  double t = (double)(t_end-t_start) / (CLOCKS_PER_SEC/1000);
   printf("Execution time (milliseconds) = %f\n", t);
 }
 
