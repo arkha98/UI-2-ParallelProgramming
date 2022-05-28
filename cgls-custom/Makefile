@@ -1,8 +1,7 @@
 CULDFLAGS=-L/usr/local/cuda/lib
 
-test: cgls_test.cu cgls.cuh
+cgls: cgls_test.cu cgls.cuh
 	nvcc -O3 -m64 -arch=sm_75 -o $@ -lcublas -lcusparse $(CULDFLAGS) $<
-	./test
 
 clean:
-	rm -rf *.o test
+	rm -rf *.o cgls

@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <time.h>
 #include <cmath>
 
 #include "cgls.cuh"
@@ -302,6 +303,10 @@ void test4() {
   cudaDeviceSynchronize();
   cusparseDestroy(handle_s);
 
+  // Compute time
+  clock_t = t;
+  t = clock();
+
   // Solve with only A.
   int flag1 = cgls::Solve<real_t, cgls::CSR>(val_a_d, rptr_a_d, cind_a_d,
       m, n, nnz, b_d, x1_d, shift, tol, maxit, quiet);
@@ -315,6 +320,9 @@ void test4() {
   int flag4 = cgls::Solve<real_t, cgls::CSC>(val_at_d, rptr_at_d, cind_at_d,
       val_a_d, rptr_a_d, cind_a_d, m, n, nnz, b_d, x4_d, shift, tol, maxit,
       quiet);
+  
+  // Compute time
+  t = clock() - t;
 
   // Retrieve solution.
   cudaMemcpy(x1_h, x1_d, n * sizeof(real_t), cudaMemcpyDeviceToHost);
@@ -338,6 +346,7 @@ void test4() {
       && err1 < tol && err2 < tol && err3 < tol) {
     printf("Test4 Passed: Flag = (%d, %d, %d, %d), Error = (%e, %e, %e)\n",
         flag1, flag2, flag3, flag4, err1, err2, err3);
+    printf("Computation time for Test4 = %.2f\n", t)
   } else {
     printf("Test4 Failed: Flag = (%d, %d, %d, %d), Error = (%e, %e, %e)\n",
         flag1, flag2, flag3, flag4, err1, err2, err3);
