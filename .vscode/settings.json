@@ -8,6 +8,7 @@
         "initializer_list": "cpp",
         "utility": "cpp",
         "valarray": "cpp",
-        "new": "cpp"
+        "new": "cpp",
+        "iomanip": "cpp"
     }
 }
