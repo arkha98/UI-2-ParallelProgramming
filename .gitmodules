@@ -10,3 +10,6 @@
 [submodule "cgls_cuda"]
 	path = cgls_cuda
 	url = https://github.com/foges/cgls_cuda.git
+[submodule "benchmarks"]
+	path = benchmarks
+	url = https://github.com/tensorflow/benchmarks.git
