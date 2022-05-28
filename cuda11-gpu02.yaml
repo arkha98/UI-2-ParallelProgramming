@@ -21,7 +21,8 @@ spec:
   # and write the date to a file inside it.
   containers:
     - name: app
-      image: nvcr.io/nvidia/cuda:11.0.3-devel-ubi8
+      # image: nvcr.io/nvidia/cuda:11.0.3-devel-ubi8
+      image: nvcr.io/nvidia/cuda:11.0.3-devel-ubuntu18.04
 
       # Mount the NFS volume in the container
       volumeMounts:
