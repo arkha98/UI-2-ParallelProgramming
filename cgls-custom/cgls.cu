@@ -179,7 +179,7 @@ int main() {
   test();
 
   // Execution time
-  t = (clock()-t)/CLOCKS_PER_SEC;
+  t = (double)(clock()-t) / CLOCKS_PER_SEC;
   printf("Execution time = %f\n", t);
 }
 
