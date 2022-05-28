@@ -172,14 +172,14 @@ void test() {
 // Run tests.
 int main() {
   // Execution time
-  clock_t t;
-  t = clock();
+  clock_t t_start = clock();
 
   // Run test
   test();
 
   // Execution time
-  t = (double)(clock()-t) / CLOCKS_PER_SEC;
+  clock_t t_end = clock();
+  double t = (double)(t_end-t_start) / CLOCKS_PER_SEC;
   printf("Execution time = %f\n", t);
 }
 
