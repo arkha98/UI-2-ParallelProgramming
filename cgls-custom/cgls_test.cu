@@ -304,7 +304,7 @@ void test4() {
   cusparseDestroy(handle_s);
 
   // Compute time
-  clock_t = t;
+  clock_t t;
   t = clock();
 
   // Solve with only A.
