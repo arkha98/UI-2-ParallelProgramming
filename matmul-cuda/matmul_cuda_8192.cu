@@ -155,7 +155,8 @@ int main(void)
     //size of the vectors to be processed  and matrix dimensions
     int Left_matrix_x, Left_matrix_y, Right_matrix_x, Right_matrix_y, Left_vector_size, Right_vector_size;
 
-    float *Left_Vector_h, *Right_Vector_h, *Left_Vector_d, *Right_Vector_d, *Res_h, *Res_d, *CPU;  // Pointer to host & device arrays
+    // float *Left_Vector_h, *Right_Vector_h, *Left_Vector_d, *Right_Vector_d, *Res_h, *Res_d, *CPU;  // Pointer to host & device arrays
+    float *Left_Vector_h, *Right_Vector_h, *Left_Vector_d, *Right_Vector_d, *Res_h, *Res_d;  // Pointer to host & device arrays
 
     printf("Enter m n n k :\n");
 
@@ -176,7 +177,7 @@ int main(void)
     vector_size = dim*dim * sizeof(float);
 
     Res_h = (float *) malloc(vector_size); // Allocate array on host for result
-    CPU = (float *) malloc(vector_size);// Allocate array on host for CPU_matrix_multiplication result
+    // CPU = (float *) malloc(vector_size);// Allocate array on host for CPU_matrix_multiplication result
 
     cudaMalloc((void **) &Left_Vector_d, vector_size);     // Allocate array on device for LHS operand
     cudaMalloc((void **) &Right_Vector_d, vector_size);   // Allocate array on device for RHS operand but this is vector 1xN
@@ -212,7 +213,7 @@ int main(void)
 
     clock_t begin = clock();
 
-    cpu_matrix_mult(Left_Vector_h,Right_Vector_h,CPU,dim); //matrix multiplication on cpu
+    // cpu_matrix_mult(Left_Vector_h,Right_Vector_h,CPU,dim); //matrix multiplication on cpu
 
     clock_t end = clock();
     double time_spent = (double)1000*(end - begin) / CLOCKS_PER_SEC;
@@ -220,36 +221,36 @@ int main(void)
     //commented out the functions which helps to calculate time
     printf("GPU time= %f ms\n", et);
 
-    printf("CPU time= %lf ms\n", time_spent);
+    // printf("CPU time= %lf ms\n", time_spent);
 
     //Prints the results
     print_matrices(Res_h,"GPU_out",Left_matrix_x,Right_matrix_y,dim);
-    print_matrices(CPU,"CPU_out",Left_matrix_x,Right_matrix_y,dim);
+    // print_matrices(CPU,"CPU_out",Left_matrix_x,Right_matrix_y,dim);
 
-    bool eqaul = true;
-    for (int i=0;i< Left_matrix_x && eqaul;i++){
-        for (int j = 0; j < Right_matrix_y && eqaul; j++) {
-            if (abs(Res_h[i*dim+j]-CPU[i*dim+j]) > 0.001)
-            {
-                eqaul = false;
-                printf("NOT EQUAL\n");
-            }
-        }
-    }
-    if (eqaul)
-    {
-        std::cout<<"Results are equal!"<<std::endl;
-    }
-    else
-    {
-        std::cout<<"Results are NOT equal!"<<std::endl;
-    }
+    // bool eqaul = true;
+    // for (int i=0;i< Left_matrix_x && eqaul;i++){
+    //     for (int j = 0; j < Right_matrix_y && eqaul; j++) {
+    //         if (abs(Res_h[i*dim+j]-CPU[i*dim+j]) > 0.001)
+    //         {
+    //             eqaul = false;
+    //             printf("NOT EQUAL\n");
+    //         }
+    //     }
+    // }
+    // if (eqaul)
+    // {
+    //     std::cout<<"Results are equal!"<<std::endl;
+    // }
+    // else
+    // {
+    //     std::cout<<"Results are NOT equal!"<<std::endl;
+    // }
 
     // Cleanup
     free(Left_Vector_h);
     free(Right_Vector_h);
     free(Res_h);
-    free(CPU);
+    // free(CPU);
     cudaFree(Left_Vector_d);
     cudaFree(Right_Vector_d);
     cudaFree(Res_d);
