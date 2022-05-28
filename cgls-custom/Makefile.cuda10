@@ -1,0 +1,35 @@
+CULDFLAGS=-L/usr/local/cuda/lib
+
+cgls: cgls.cu cgls.cuh
+	nvcc -O3 -m64 -arch=sm_75 -o $@ -lcublas -lcusparse $(CULDFLAGS) $<
+
+cgls_128: cgls_128.cu cgls.cuh
+	nvcc -O3 -m64 -arch=sm_75 -o $@ -lcublas -lcusparse $(CULDFLAGS) $<
+
+cgls_256: cgls_256.cu cgls.cuh
+	nvcc -O3 -m64 -arch=sm_75 -o $@ -lcublas -lcusparse $(CULDFLAGS) $<
+
+cgls_512: cgls_512.cu cgls.cuh
+	nvcc -O3 -m64 -arch=sm_75 -o $@ -lcublas -lcusparse $(CULDFLAGS) $<
+
+cgls_1024: cgls_1024.cu cgls.cuh
+	nvcc -O3 -m64 -arch=sm_75 -o $@ -lcublas -lcusparse $(CULDFLAGS) $<
+
+cgls_2048: cgls_2048.cu cgls.cuh
+	nvcc -O3 -m64 -arch=sm_75 -o $@ -lcublas -lcusparse $(CULDFLAGS) $<
+
+cgls_4096: cgls_4096.cu cgls.cuh
+	nvcc -O3 -m64 -arch=sm_75 -o $@ -lcublas -lcusparse $(CULDFLAGS) $<
+
+cgls_8192: cgls_8192.cu cgls.cuh
+	nvcc -O3 -m64 -arch=sm_75 -o $@ -lcublas -lcusparse $(CULDFLAGS) $<
+
+clean:
+	rm -rf *.o cgls
+	rm -rf *.o cgls_128
+	rm -rf *.o cgls_256
+	rm -rf *.o cgls_512
+	rm -rf *.o cgls_1024
+	rm -rf *.o cgls_2048
+	rm -rf *.o cgls_4096
+	rm -rf *.o cgls_8192

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cp Makefile.cuda11 Makefile
+
 make cgls
 make cgls_128
 make cgls_256
