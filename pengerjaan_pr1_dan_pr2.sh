@@ -25,6 +25,10 @@ cd UI-2-ParallelProgramming
 git submodule init
 git submodule update
 
+# buat folder
+mkdir nama_anda
+cd nama_anda
+
 # PR 1
 #=====
 # Topik 1
