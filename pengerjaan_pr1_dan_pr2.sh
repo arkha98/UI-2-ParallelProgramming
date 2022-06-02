@@ -13,6 +13,18 @@ alias ssh-gpu-03-20='ssh user20@34.82.223.138 -p 11002'
 # ssh a100
 alias ssh-a100='ssh paralel2022@34.82.223.138 -p 6000'
 
+# lihat pods
+kubectl get pods
+
+# masuk pods
+kubectl exec -it namapods /bin/bash
+
+# github
+git clone https://github.com/arkha98/UI-2-ParallelProgramming.git
+cd UI-2-ParallelProgramming
+git submodule init
+git submodule update
+
 # PR 1
 #=====
 # Topik 1
