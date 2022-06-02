@@ -67,7 +67,7 @@ nvcc increment.cu -o increment.o
 ./increment.o
 
 nvcc minimal_kernel.cu -o minimal_kernel.o
-./minimal_kernel.o > minimal_kernel.out
+./minimal_kernel.o
 
 # Topik 2 (Cuda 10)
 # Ada di folder matmul-cuda
