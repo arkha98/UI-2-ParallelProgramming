@@ -14,5 +14,5 @@ spec:
       command: ["/bin/sh"]
       args: ["-c", "while true; do sleep 10; done"]
       volumeMounts:
-        - mountPath: "/myworkspace"
+        - mountPath: "/workspace"
           name: paralel2022-pv-storage
