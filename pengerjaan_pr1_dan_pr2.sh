@@ -29,6 +29,9 @@ git submodule update
 mkdir nama_anda
 cd nama_anda
 
+# list file
+ls -la
+
 # PR 1
 #=====
 # Topik 1
